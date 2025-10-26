@@ -41,13 +41,71 @@ user_input = st.text_area("✍️ Type your comment here:", height=160)
 # =============================
 
 _ROMAN_URDU_WORDS = {
-    "mujhe","mujhay","mujhko","mujko","mera","meri","mere","tum","tu","ap","aap","acha","acha","achae",
-    "acha","acha","achha","acha","acha","bura","buri","nahi","nai","nhi","kyun","kyu","kyon","kya","kahan",
-    "kab","bohot","bahut","bahot","bhut","pyar","piyar","pyaar","love","khushi","khush","udaas","sad",
-    "gussa","gussah","gussa","acha laga","acha laga","pasand","nazar","nahi","theek","theek hai","acha hai",
-    "acha nhi","acha nahi","shukriya","thanks","dhanyavaad","jazakallah","jazakallah","acha tha","acha tha",
-    "kal","aaj","subah","shaam","raat","ghar","school","college","kam","mazaa"
+    # Pronouns
+    "main","mein","me","mai","mujhe","mujhay","mujhko","mujko","mera","meri","mere","tum","tu","aap","ap","aapka","aapki","aapke",
+    "us","use","usay","unko","unka","unki","unke","ham","hum","humein","humko","hamara","hamari","hamare",
+    "woh","wo","vo","wohi","unka","unki","unhon","unho","inhon","inho",
+    
+    # Basic verbs
+    "hona","hun","hoon","hain","hai","tha","thi","the","tha","thi","tha","thay",
+    "karna","karta","kartay","karti","karti hoon","kartay ho","kar raha","kar rahi","kar rahe","kiya","kya","karein","karo",
+    "aana","aaya","aayi","aaye","aata","aati","aate","jaana","gaya","gayi","jate","jata","jati","jaa","jana","aaja","chalo",
+    "bolna","bola","boli","bolay","bol","sunna","suna","suni","sunay","sochna","socha","sochi","sochay","dekhna","dekha","dekhi","dekhe",
+    "samajhna","samjha","samjhi","samjhe","likhna","likha","likhi","likhe","parhna","parha","parhi","parhe","chahiye","dena","diya","di","diyah",
+    "lena","liya","li","liye","rakha","rakhi","rakhe","mangna","manga","mangi","mangna","mangta","mangti","mangtay",
+
+    # Common connectors
+    "aur","ya","lekin","magar","par","agar","to","phir","jab","tab","kyunki","isliye","ke","mein","may","kay","ka","ki","ke","kaun","kis","kisko","kuch","sab","sabhi",
+    "ye","yeh","yah","woh","wo","voh","ab","tab","idhar","udhar","yahan","wahan","ahan","ahan","haan","han","nahi","nai","nhi","bilkul","zaroor","shayad","kabhi","hamesha",
+
+    # Emotions / reactions
+    "acha","achha","achae","bura","buri","theek","thik","mast","maza","mazaa","mazedar","mazay","mazaydaar","bore","boring","bohot","bahut","bahot","zabardast","best",
+    "gussa","naraz","khush","khushi","udaas","dil","pyar","pyaar","piyar","ishq","mohabbat","nafrat","dard","gham","rona","ro","hasna","hansa","hansi","rona aaya",
+    "mujhe acha laga","bohot acha","bura laga","acha nahi","acha nhi","acha tha","acha hai","acha lagta","acha lagti","bahut acha","bura laga","bura lagta","bura tha",
+    "acha nahi","bura nahi","achha nahi","achha tha","pasand","pasand aya","pasand aaya","pasand nahi","pasand nhi","shukriya","thanks","dhanyavaad","jazakallah","allah ka shukar",
+    "dukh","sukoon","tension","relax","thanda","garam","thaka","thaki","thake","thak gaya","thak gyi","thak gaya hoon","so gaya","so gyi","thoda","zyada","kam",
+
+    # Greetings & common talk
+    "salam","assalamualaikum","walaikumassalam","hello","hi","hey","bye","khuda hafiz","allah hafiz","good night","good morning","subah bakhair","shab bakhair",
+    "kaisa","kaisi","kaise","theek ho","kya haal","sab theek","mein theek","aap kaise","shukriya","thank you","welcome","maaf","sorry","maafi","acha laga","bohot din baad",
+
+    # Days / time / place
+    "aaj","kal","parso","subah","shaam","raat", "h", "din","savera","dopahar","abhi","pehle","baad","der","jaldi","ghar","office","school","college","bazaar","market","masjid",
+    "mandir","ghar jana","ghar aa","ghar gaya","ghar gaya tha","ghar par","ghar mai","room","kamra","city","gaon","sheher","karachi","lahore","islamabad","mithi","hyderabad",
+    "idhar","udhar","bahar","andar","upar","neeche","samne","piche","left","right","road","rasta","gali",
+
+    # Objects / common nouns
+    "kitab","mobile","phone","charger","light","fan","table","kursi","car","bike","bus","rickshaw","train","ticket","bag","pani","chai","coffee","roti","khana","biryani",
+    "andaa","anda","chawal","sabzi","gosht","roti","daal","achar","doodh","meetha","namak","mirch","thanda","garam","pankha","switch","computer","laptop","tv","remote","ac",
+    "internet","wifi","network","battery","charger","pen","paper","copy","notebook","book","camera","pic","photo","video","song","music","gaana","film","movie","game",
+
+    # Family / people
+    "maa","ammi","mama","abba","abu","baba","papa","dad","mom","behan","bhai","bhaiya","dost","friend","teacher","sir","madam","chacha","chachi","phuppo","mamu","khala",
+    "beta","beti","bacha","bachi","uncle","aunty","cousin","nephew","niece","student","classmate","boss","colleague","neighbour","padosi","log","insan","aadmi","aurat",
+    "ladka","ladki","banda","bandi","shaadi","dulha","dulhan","rishta","biwi","mian","patni","husband","wife",
+
+    # Common adjectives / states
+    "naya","purana","bada","chota","lamba","chhota","mota","patla","mehnga","mehengi","sasta","tez","dhimi","acha","bura","sundar","khoobsurat","pyara","mazedar","ajeeb",
+    "normal","khaas","garam","thanda","gila","sukha","andaaz","acha","nahi","behtar","kharab","mast","fit","perfect","cute","sweet","nice","cool","amazing","awesome","boring",
+
+    # Feelings / actions / daily phrases
+    "mujhe lagta hai","lagta hai","shayad","pata nahi","samajh nahi","samjha nahi","samjhi nahi","yaar","bhai","behan","plz","please","krdo","kar do","mat karo","na karo",
+    "zaroor","pukka","pata hai","mujhe pta","mujhe nahi pta","mujhe lagta","mujhe samajh","sochta","sochti","yaad","yaad aaya","yaad nahi","bhool gaya","bhool gayi",
+    "likhna","padna","dekhna","bolna","sona","uthna","khana","peena","jeena","marna","daurna","chalna","rukna","khelna","parhna","kaam karna","kaam","job","mehnat",
+    "thoda sa","bohot zyada","thoda kam","zyada nahi","bas itna","kitna","kitni","kitne","sab kuch","kuch nahi","sab theek","sab accha","sab khush","sab udaas",
+
+    # Islamic / cultural words
+    "allah","khuda","dua","aameen","ameen","inshallah","mashallah","subhanallah","alhamdulillah","astaghfirullah","jazakallah","allah ka shukar","khuda ka shukar",
+    "namaz","roza","eid","jumma","sehri","iftar","quran","masjid","azaan","dua karo","duaen","iman","islam","deen","sabr","shukar","barkat","rizq","zindagi","maut",
+
+    # Slang / chat abbreviations
+    "lol","lmao","hahaha","hehe","haha","hmm","hmm","huh","uff","ufff","ok","okk","okey","oky","bro","sis","yar","yaar","plz","pls","k","kk","thx","tnx","ty","np",
+    "btw","idk","ikr","f9","gr8","gud","nyc","luv","bcz","coz","frnd","msg","txt","ya","yaa","haan","han","nahi","nai","acha","achha","theek","thik","bura","bohot",
+    "acha lagta","acha nahi","acha tha","acha hai","nahi laga","acha laga","sahi","galat","fine","bad","worst","best","amazing","superb","awesome","cool","decent",
+    "mujhe samajh nahi aaya","mujhe pasand","mujhe nahi pasand","bahot maza aaya","bohot acha laga","bura laga","mujhe acha laga","acha tha","acha nhi laga","mast tha",
+    "acha experience","kharab tha","bohot khushi hui","udaasi thi","dil khush ho gaya","bura mehsoos hua","maza aya","fun tha","enjoy kiya","enjoyed"
 }
+
 
 def contains_urdu_script(text: str) -> bool:
     return bool(re.search(r'[\u0600-\u06FF]', text))
@@ -132,75 +190,70 @@ def preprocess_negations(text: str) -> str:
 # Robust translation strategy
 # (Keep your existing robust_translate function)
 # =============================
+
+def clean_text(text):
+    # remove emojis, urls, punctuation noise
+    text = re.sub(r"http\S+|www\S+|@\S+", "", text)
+    text = re.sub(r"[^\w\s]", "", text)
+    return text.strip()
+
 def robust_translate(text: str):
     """
     Returns a tuple:
       (detected_type, translator_src_lang, translated_text)
     detected_type: one of "urdu_script", "roman_urdu", "english"
-    translator_src_lang: what googletrans says it detected (e.g., 'ur','en') or None on failure
+    translator_src_lang: 'ur' or 'en' or None on failure
     translated_text: translated English text (if translation performed) or original text
     """
-    # 1) Fast checks
+
+    # --- 1) Detect text type ---
     if contains_urdu_script(text):
         detected_type = "urdu_script"
     else:
-        # compute roman-urdu score and simple english presence
         rscore = roman_urdu_score(text)
         english_like = is_english_like(text)
-        # heuristics:
-        # - if many roman-Urdu tokens present => roman_urdu
-        # - if only ascii letters and few roman tokens => english
+
         if rscore >= 2 and english_like:
             detected_type = "roman_urdu"
         elif not english_like:
-            # no latin letters and no urdu script -> unknown/unsupported
             detected_type = "unknown"
         else:
-            # ask langdetect to help
             probs = safe_langdetect_probs(text)
             if probs:
                 top = probs[0]
-                # if top language is english with high prob -> english
                 if top.lang == "en" and top.prob > 0.85:
                     detected_type = "english"
-                # if top is urdu (rare) or others -> treat as roman or unknown
-                elif top.lang == "ur" or top.lang == "pa" or top.lang == "hi":
-                    # these likely indicate non-english -> treat as roman_urdu
+                elif top.lang in ["ur", "pa", "hi"]:
                     detected_type = "roman_urdu"
                 else:
-                    # fallback based on roman score
                     detected_type = "roman_urdu" if rscore >= 1 else "english"
             else:
                 detected_type = "roman_urdu" if rscore >= 1 else "english"
 
-    # 2) Try translation with translator
+    # --- 2) Translation phase ---
     translator_src = None
-    translated = text
+    translated = text.strip()
+
     try:
-        # ask translator to auto-detect first
-        res = GoogleTranslator(source='auto', target='en').translate(text)
-        translator_src = getattr(res, 'src', None)
-        translated_candidate = getattr(res, 'text', text)
-        
-        # if translator thinks source is English but we flagged roman_urdu/urdu_script,
-        # try forcing src='ur' (google translates roman-Urdu poorly unless forced)
-        if translator_src in ('en', 'und') and detected_type in ("roman_urdu", "urdu_script"):
-            # second attempt: force Urdu as source
-            try:
-                res2 = GoogleTranslator(source='auto', target='en').translate(text)
-                translator_src = getattr(res2, 'src', translator_src) # Use 'ur' if successful
-                translated = getattr(res2, 'text', translated_candidate)
-            except Exception:
-                # fallback to first candidate
-                translated = translated_candidate
-        else:
-            translated = translated_candidate
+        if detected_type in ("roman_urdu", "urdu_script"):
+            # Force Urdu source to correctly translate Roman Urdu
+            translated = GoogleTranslator(source="ur", target="en").translate(text)
             
+            translator_src = "ur"
+        else:
+            translated = text
+            translator_src = "en"
+
+        # If translation didn’t change text, try once more (rare)
+        if translated.strip().lower() == text.strip().lower() and detected_type != "english":
+            translated = GoogleTranslator(source="auto", target="en").translate(text)
+            translator_src = "ur"
+            
+
     except Exception as e:
-        # translator failed: keep original text and mark src None
-        translator_src = None
-        translated = text
         st.warning(f"Translation failed: {e}. Predicting on original text.")
+        translated = text
+        translator_src = None
 
     return detected_type, translator_src, translated
 
@@ -229,12 +282,14 @@ if st.button("🔍 Analyze Sentiment"):
             # Show both original and translated (if different)
             st.markdown("**Original Text:**")
             st.write(user_input)
+           # st.write(translated_text)
+             
             
             if translated_text.strip().lower() != user_input.strip().lower():
-                st.markdown("**Translated to English:**")
+                st.markdown("Translated to English:")
                 st.write(translated_text)
             else:
-                st.markdown("_No translation performed (text already English or translation identical to input)._")
+                st.markdown("No translation performed (text already English or translation identical to input).")
 
             # === START: MODIFIED SECTION ===
             
