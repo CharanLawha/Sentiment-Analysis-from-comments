@@ -22,7 +22,9 @@ except FileNotFoundError:
     st.error("Model files (sentiment_model.pkl, vectorizer.pkl, label_encoder.pkl) not found! Please make sure they are in the same directory.")
     st.stop()
 
-translator = Translator()
+from deep_translator import GoogleTranslator
+
+
 
 # =============================
 # UI
@@ -176,7 +178,7 @@ def robust_translate(text: str):
     translated = text
     try:
         # ask translator to auto-detect first
-        res = translator.translate(text, src='auto', dest='en')
+        res = GoogleTranslator(source='auto', target='en').translate(text)
         translator_src = getattr(res, 'src', None)
         translated_candidate = getattr(res, 'text', text)
         
