@@ -1,7 +1,7 @@
 import streamlit as st
 import pickle
 import numpy as np
-from googletrans import Translator
+
 import re
 from langdetect import detect_langs, LangDetectException
 from spellchecker import SpellChecker # Import SpellChecker
@@ -187,7 +187,7 @@ def robust_translate(text: str):
         if translator_src in ('en', 'und') and detected_type in ("roman_urdu", "urdu_script"):
             # second attempt: force Urdu as source
             try:
-                res2 = translator.translate(text, src='ur', dest='en')
+                res2 = GoogleTranslator(source='auto', target='en').translate(text)
                 translator_src = getattr(res2, 'src', translator_src) # Use 'ur' if successful
                 translated = getattr(res2, 'text', translated_candidate)
             except Exception:
